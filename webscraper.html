@@ -1,0 +1,295 @@
+<html><head>
+  <title>Web Scraping Tutorial</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      margin: 0;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: #444;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #fff;
+      padding: 10px 20px;
+    }
+
+    nav a:hover {
+      background-color: #555;
+    }
+
+    section {
+      background-color: #fff;
+      border-radius: 10px;
+      margin: 20px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .checkmark-btn {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .rainbow {
+      animation: rainbow 5s linear;
+    }
+
+    @keyframes rainbow {
+      0% {
+        background: #FF0000;
+        color: #FF0000;
+      }
+      14% {
+        background: #FF7F00;
+        color:#9400D3;
+      }
+      28% {
+        background: #FFFF00;
+        color: #4B0082;
+      }
+      42% {
+        background: #00FF00;
+        color: #0000FF;
+      }
+      57% {
+        background: #0000FF;
+        color:#00FF00;
+      }
+      71% {
+        background: #4B0082;
+        color: #FFFF00;
+      }
+      85% {
+        background: #9400D3;
+        color: #FF7F00;
+      }
+      100% {
+        background: #FF0000;
+        color: #FF0000;
+      }
+    }
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+    }
+    img{
+      width:60%;
+      height:60%;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Web Scraping Tutorial</h1>
+  </header>
+  
+  <nav>
+    <a href="#introduction">Introduction</a>
+    <a href="#setup">Setup</a>
+    <a href="#scraping">Web Scraping</a>
+    <a href="#example">Example</a>
+    <a href="#conclusion">Conclusion</a>
+  </nav>
+  
+  <section id="introduction">
+    <h2>Introduction</h2>
+    <p>Welcome to the captivating world of web scraping, where you have 
+the ability to extract valuable data from websites at your fingertips! On 
+this tutorial platform, we will guide you through the thrilling art and 
+science of gathering information from the web, utilizing popular 
+programming languages such as Python.
+<br><br>
+    Through this tutorial, you will acquire the skills to automate the 
+data collection process, enabling you to uncover a plethora of insights 
+that can be utilized for research, analysis, and decision-making. Whether 
+you possess a passion for data, work in a professional setting, or simply 
+have a curious mind, web scraping grants you access to a realm of endless 
+possibilities.
+<br><br>
+    Prepare yourself to delve into this exhilarating journey of mastering 
+web scraping together!
+<br><br>
+    (When you finish sections make sure to hit the checkmark) </p>
+    <button class="checkmark-btn" 
+onclick="toggleRainbow(this)">✓</button>
+  </section>
+
+  <section id="setup">
+    <h2>Setup</h2>
+    <p>To get started on your web scraping adventure, you'll need two 
+essential tools: an integrated development environment (IDE) for coding 
+and Python, the versatile programming language. Once you've got those in 
+place, make sure to supercharge your toolkit by installing Beautiful Soup 
+4 (beautifulsoup4) using pip. <br><br><code>pip install 
+beautifulsoup4</code><br><br> With these foundational elements in your 
+arsenal, you'll be well on your way to becoming a web scraping wizard!</p>
+    <button class="checkmark-btn" 
+onclick="toggleRainbow(this)">✓</button>
+  </section>
+
+  <section id="scraping">
+    <h2>Web Scraping</h2>
+    <p>aditya video.</p>
+    <button class="checkmark-btn" 
+onclick="toggleRainbow(this)">✓</button>
+  </section>
+
+  <section id="example">
+    <h2>Steps</h2>
+    First import the required modules
+    <br>
+    <br>
+    <code class="bruh">from bs4 import BeautifulSoup<br>
+    import requests</code>
+    
+    <br>
+    <br>
+Next we'll make a list of websites we want to scrape
+    <br>
+    <br>
+    <code class="bruh">new_sites= ["cnn","msnbc","nbcnews"]</code>
+
+    <br>
+    <br>
+
+    Next we'll make a function that will get the top story
+    <br>
+    <br>
+    <code class="bruh">def getTopStory(site):
+    <br>&nbsp;&nbsp;&nbsp;&nbsp;scraper = 
+BeautifulSoup(requests.get(f"https://www.{site}.com").content,"html.parser")
+   <br>&nbsp;&nbsp;&nbsp;&nbsp;return scraper.find_all('h2')[0].get_text() 
+</code>
+    <br>
+    <br>
+Let's go line by line. First we use BeautifulSoup to create a scraper 
+object. This is the object that will be used to scrape the website. Next 
+we use requests to grab the content from a site using .content, and pass a 
+parameter saying it's html so our scraper can process it propery. Next we 
+use the scraper to .find_all() to find all the h2 tags. Finally we return 
+the text of the first h2 tag. What is an h2 tag? If we inspect one of the 
+websites we can see that the news stories are in h2 tags.
+    <br>
+    <br>
+    <img src="bruh.png">
+    
+    <br>
+    <br>
+    Now we'll write a function to scrape all sites in our list
+      <br>
+      <br>
+      <code class="bruh">for site in new_sites:
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;print(f"Top Story from: {site} \n 
+{getTopStory(site)} \n") </code>
+    <br>
+    <br>
+    All Together
+      <br>
+      <br>
+      <code class="bruh">from bs4 import BeautifulSoup<br>
+      import requests
+      <br>
+        new_sites= ["cnn","msnbc","nbcnews"]
+        <br>
+        def getTopStory(site):
+          <br>&nbsp;&nbsp;&nbsp;&nbsp;scraper = 
+BeautifulSoup(requests.get(f"https://www.{site}.com").content,"html.parser")
+         <br>&nbsp;&nbsp;&nbsp;&nbsp;return 
+scraper.find_all('h2')[0].get_text() 
+        <br>
+        for site in new_sites:
+        <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;print(f"Top Story from: {site} \n 
+{getTopStory(site)} \n") 
+        
+      </code>
+    <br>
+    <br>
+You should see an output similar to this
+
+    <br><br>
+    <code>
+      Top Story from: cnn 
+       <br>House Freedom Caucus comes out against Johnson's funding plan 
+<br>
+      Top Story from: msnbc 
+       <br> Incidents suggest some congressional Republicans need a 
+timeout 
+
+      Top Story from: nbcnews 
+        news Alerts 
+
+    </code>
+    <br>
+    <br>
+    
+    <button class="checkmark-btn" 
+onclick="toggleRainbow(this)">✓</button>
+  </section>
+
+  <section id="conclusion">
+    <h2>Conclusion</h2>
+    <p>In conclusion, we've explored the captivating world of web 
+scraping, empowering you to gather valuable data from the web with the 
+help of Python and Beautiful Soup 4. Armed with your IDE and newfound 
+skills, you now possess the ability to extract, analyze, and transform web 
+data, opening doors to endless possibilities in research, business, and 
+more.
+
+    Remember, web scraping is not only a technical skill but a key to 
+unlocking insights and solutions. As you continue your journey, keep 
+honing your skills, stay ethical in your scraping practices, and, most 
+importantly, enjoy the adventure of uncovering knowledge from the vast 
+web. The path of web scraping mastery is a rewarding one, and the 
+possibilities are boundless. Happy scraping!</p>
+    <button class="checkmark-btn" 
+onclick="toggleRainbow(this)">✓</button>
+  </section>
+
+  
+  <script>
+    function toggleRainbow(button) {
+      const section = button.parentElement;
+      section.classList.toggle('rainbow');
+
+      button.disabled = true;
+
+      
+      button.style.backgroundColor = 'white';
+
+ 
+      button.style.color = 'limegreen';
+
+      button.style.border = '2px solid limegreen';
+    }
+  </script>
+
+
+</body></html>
